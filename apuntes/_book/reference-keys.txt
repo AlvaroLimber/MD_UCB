@@ -1,0 +1,11 @@
+minería-de-datos
+motivación-para-la-minería-de-datos
+qué-es-la-minería-de-datos
+datos-y-conocimiento-insumoresultado
+datos-1
+conocimiento
+requerimientos
+knowledge-discovery-in-databases-kdd
+recopilación
+data-warehouse
+data-warehouse-in-r

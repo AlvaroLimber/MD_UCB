@@ -1,0 +1,80 @@
+# Minería de Datos
+
+## Motivación para la Minería de datos
+
+  * (Variedad) Los métodos de recolección de datos han evolucionado muy rápidamente.
+  * (Volumen) Las bases de datos han crecido exponencialmente
+  * (Usuarios) Estos datos contienen información útil para las empresas, países, etc.
+  * (Tecnología) El tamaño hace que la inspección manual sea casi imposible
+  * (Método) Se requieren métodos de análisis de datos automáticos para optimizar el uso de estos enormes conjuntos de datos
+
+## ¿Qué es la minería de datos?
+
+Es el análisis de **conjuntos de datos** (a menudo grandes) para encontrar **relaciones insospechadas** (conocimiento) y resumir los datos de **formas novedosas** que sean **comprensibles y útiles** para el propietario/usuario de los datos.
+
+<p style='text-align: right;'> Principles of Data Mining (Hand et.al. 2001) </p>
+
+## Datos y conocimiento (Insumo/Resultado)
+
+### Datos:
+
+  * se refieren a instancias únicas y primitivas (objetos elementales, personas, eventos, puntos en el tiempo, etc.)
+  * describir propiedades individuales
+  * a menudo son fáciles de recolectar u obtener (por ejemplo, cajeros de escáner, internet, etc.)
+  * no nos permiten hacer predicciones o pronósticos
+
+> Ejercicio 1
+
+Elija un sector/área y describa los potenciales datos que se tienen disponibles
+
+### Conocimiento:
+
+  * (Características) se refiere a clases de instancias (conjuntos de ...)
+  * (Forma) describe patrones generales, estructuras, leyes,
+  * (Declaración) consta de la menor cantidad de declaraciones posibles
+  * (Proceso) a menudo es difícil y lleva mucho tiempo encontrar u obtener
+  * (Acciones) nos permite hacer predicciones y pronósticos
+
+> Ejercicio 2
+
+Identifique potenciales conocimientos que se pueden explorar de las respuestas del ejercicio anterior
+
+## Requerimientos
+
+  * Disponibilidad para aprender 
+  * Mucha paciencia
+    - Interactúa con otras áreas
+    - Pre procesamiento de datos 
+  * Creatividad
+  * Rigor, prueba y error
+
+## knowledge discovery in databases (KDD)
+
+![](images/f1.png)
+
+  * Problema (pregunta de investigación) 
+  * Recopilación de la fuente de datos
+    + Base de datos
+  * Selección 
+    + Datos objetivos 
+  * Pre procesado
+    + Datos pre procesados
+  * Transformación
+    + Datos transformados
+  * Minería de datos
+    + Patrones
+  * Interpretación/evaluación
+    + Conocimiento
+  * Visualización de datos
+    + Reporte
+
+## Recopilación
+
+## Data Warehouse
+
+![](images/dataware.png)
+
+## Data Warehouse in R
+
+![](images/rdata.png)
+

@@ -68,7 +68,14 @@ Identifique potenciales conocimientos que se pueden explorar de las respuestas d
   * Visualización de datos
     + Reporte
 
-## Recopilación
+## Fuentes de información
+
+  * Censos
+  * Encuestas
+    + Estadísticas
+    + Estudios de observación
+  * Registros administrativos (digital/no digital)
+  * Información de internet (registros)
 
 ## Data Warehouse
 

@@ -1,0 +1,14 @@
+---
+title: "Investigación reproducible"
+author: "MSc. Alvaro Chirino Gutierrez"
+date: '2022-08-12'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Motivación
+
+Se refiere al proceso de escribir en un mismo archivo; el texto del documento, como también el código.

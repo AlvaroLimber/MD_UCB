@@ -68,15 +68,24 @@ Identifique potenciales conocimientos que se pueden explorar de las respuestas d
   * Visualización de datos
     + Reporte
 
-## Fuentes de información
+## Recopilación de información
 
   * Censos
+    + Población y vivienda: 2012 (x), 2001 (x), 1992 (x), 1976 (x), 1950 https://www.ipums.org/ INE
+    + Agropecuario: (UPA=Unidades productivas agropecuarias) 2013, 1984
+    + Económico.
   * Encuestas
-    + Estadísticas
-    + Estudios de observación
+    + Periódicas: EH (bienestar), ENDSA (salud), ETE ECE (empleo), ENA (Agropecuarias)
+    + Temáticas: Coca, Violencia a la mujer, Trabajo infantil NNA, Uso de tiempo , presupuestos familiares, Adulto mayor (UDAPE), Mujeres embarazadas - Juana Zurduy (UDAPE) 
+    + Estudios de observación: Alcance limitado. 
+    + Internacionales: LAPOP, Latinobarómetro 
   * Registros administrativos (digital/no digital)
+    + Espacial/geográfico: Tarea: Buscar una fuente de datos que permita trabajar con mapas (.shp) shapefiles
+    +
   * Información de internet (registros)
-
+    + (API) Es posible obtener los comentarios que existen en facebook de forma automática, ejemplo.
+    +
+    
 ## Data Warehouse
 
 ![](images/dataware.png)

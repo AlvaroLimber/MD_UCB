@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Minería de datos</title>
   <meta name="description" content="Este texto esta destinado a estudiantes de la carrera de Economía e Inteligencia de Negocios de la Universidad Católica Boliviana" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Minería de datos" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="MSc. Alvaro Limber Chirino Gutierrez" />
 
 
-<meta name="date" content="2022-08-09" />
+<meta name="date" content="2022-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -177,7 +177,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="minería-de-datos.html"><a href="minería-de-datos.html#requerimientos"><i class="fa fa-check"></i><b>1.4</b> Requerimientos</a></li>
 <li class="chapter" data-level="1.5" data-path="minería-de-datos.html"><a href="minería-de-datos.html#knowledge-discovery-in-databases-kdd"><i class="fa fa-check"></i><b>1.5</b> knowledge discovery in databases (KDD)</a></li>
-<li class="chapter" data-level="1.6" data-path="minería-de-datos.html"><a href="minería-de-datos.html#recopilación"><i class="fa fa-check"></i><b>1.6</b> Recopilación</a></li>
+<li class="chapter" data-level="1.6" data-path="minería-de-datos.html"><a href="minería-de-datos.html#fuentes-de-información"><i class="fa fa-check"></i><b>1.6</b> Fuentes de información</a></li>
 <li class="chapter" data-level="1.7" data-path="minería-de-datos.html"><a href="minería-de-datos.html#data-warehouse"><i class="fa fa-check"></i><b>1.7</b> Data Warehouse</a></li>
 <li class="chapter" data-level="1.8" data-path="minería-de-datos.html"><a href="minería-de-datos.html#data-warehouse-in-r"><i class="fa fa-check"></i><b>1.8</b> Data Warehouse in R</a></li>
 </ul></li>
@@ -202,7 +202,7 @@ div.csl-indent {
 <h1 class="title">Minería de datos</h1>
 <h2 class="subtitle"><em>Aplicaciones en R con bases de datos de Bolivia</em></h2>
 <p class="author"><em>MSc. Alvaro Limber Chirino Gutierrez</em></p>
-<p class="date"><em>2022-08-09</em></p>
+<p class="date"><em>2022-08-17</em></p>
 </div>
 <div id="prefacio" class="section level1 unnumbered hasAnchor">
 <h1>Prefacio<a href="index.html#prefacio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -226,47 +226,30 @@ div.csl-indent {
 <div id="software-y-acuerdos" class="section level2 unnumbered hasAnchor">
 <h2>Software y acuerdos<a href="index.html#software-y-acuerdos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.2.0 (2022-04-22 ucrt)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 19044)
+<pre><code>## R version 4.2.1 (2022-06-23)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 20.04.4 LTS
 ## 
 ## Matrix products: default
+## BLAS:   /usr/lib/x86_64-linux-gnu/atlas/libblas.so.3.10.3
+## LAPACK: /usr/lib/x86_64-linux-gnu/atlas/liblapack.so.3.10.3
 ## 
 ## locale:
-## [1] LC_COLLATE=English_United States.utf8 
-## [2] LC_CTYPE=English_United States.utf8   
-## [3] LC_MONETARY=English_United States.utf8
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.utf8    
+##  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+##  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+##  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+## [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices
-## [4] utils     datasets  methods  
-## [7] base     
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.9       highr_0.9       
-##  [3] pillar_1.7.0     compiler_4.2.0  
-##  [5] bslib_0.3.1      jquerylib_0.1.4 
-##  [7] tools_4.2.0      digest_0.6.29   
-##  [9] jsonlite_1.8.0   evaluate_0.15   
-## [11] lifecycle_1.0.1  tibble_3.1.7    
-## [13] lattice_0.20-45  pkgconfig_2.0.3 
-## [15] rlang_1.0.2      cli_3.3.0       
-## [17] yaml_2.3.5       xfun_0.31       
-## [19] fastmap_1.1.0    withr_2.5.0     
-## [21] dplyr_1.0.9      stringr_1.4.0   
-## [23] knitr_1.39       generics_0.1.2  
-## [25] vctrs_0.4.1      sass_0.4.1      
-## [27] grid_4.2.0       tidyselect_1.1.2
-## [29] mice_3.14.0      glue_1.6.2      
-## [31] R6_2.5.1         fansi_1.0.3     
-## [33] rmarkdown_2.14   bookdown_0.27   
-## [35] purrr_0.3.4      tidyr_1.2.0     
-## [37] magrittr_2.0.3   backports_1.4.1 
-## [39] ellipsis_0.3.2   htmltools_0.5.2 
-## [41] utf8_1.2.2       stringi_1.7.6   
-## [43] broom_1.0.0      crayon_1.5.1</code></pre>
+##  [1] bookdown_0.28   digest_0.6.29   R6_2.5.1        jsonlite_1.8.0 
+##  [5] magrittr_2.0.3  evaluate_0.16   highr_0.9       stringi_1.7.8  
+##  [9] rlang_1.0.4     cachem_1.0.6    jquerylib_0.1.4 bslib_0.4.0    
+## [13] rmarkdown_2.14  tools_4.2.1     stringr_1.4.0   xfun_0.32      
+## [17] yaml_2.3.5      fastmap_1.1.0   compiler_4.2.1  htmltools_0.5.3
+## [21] knitr_1.39      sass_0.4.2</code></pre>
 </div>
 <div id="datos" class="section level2 unnumbered hasAnchor">
 <h2>Datos<a href="index.html#datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>

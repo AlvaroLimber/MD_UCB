@@ -9,3 +9,4 @@ knowledge-discovery-in-databases-kdd
 recopilación
 data-warehouse
 data-warehouse-in-r
+fuentes-de-información

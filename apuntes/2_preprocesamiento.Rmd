@@ -1,0 +1,49 @@
+# Pre procesamiento
+
+  - Recopilación
+  - Importación
+  - Exploración
+    * Diccionario de variables
+    * Niveles de agregación
+    * Descripción univariada 
+    * Identificando relaciones
+    * Aproximación Visual (Visualización)
+  - Filtrado y selección
+    * Filtrado de observaciones
+    * Selección de variables
+    * Pivot, Reshape
+    * Uniendo bases de datos
+  - Muestreo, estimación, error estándar y confiabilidad
+    * Diseño muestral
+    * Estimación
+    * Rendimiento
+  - Transformación
+    * Adecuación de formatos
+    * Limpieza de texto
+    * Creación de variables
+    * Valores atípicos
+    * Valores perdidos
+    
+## Recopilación
+## Importación
+## Exploración
+### Diccionario de variables
+### Niveles de agregación
+### Descripción univariada 
+### Identificando relaciones
+### Aproximación Visual (Visualización)
+## Filtrado y selección
+### Filtrado de observaciones
+### Selección de variables
+### Pivot, Reshape
+### Uniendo bases de datos
+## Muestreo, estimación, error estándar y confiabilidad
+### Diseño muestral
+### Estimación
+### Rendimiento
+## Transformación
+### Adecuación de formatos
+### Limpieza de texto
+### Creación de variables
+### Valores atípicos
+### Valores perdidos

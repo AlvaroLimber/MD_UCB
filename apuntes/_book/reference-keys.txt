@@ -6,8 +6,9 @@ datos-1
 conocimiento
 requerimientos
 knowledge-discovery-in-databases-kdd
-fuentes-de-datos
+recopilación-de-información
 data-warehouse
+data-warehouse-in-r
 pre-procesamiento
 recopilación
 importación

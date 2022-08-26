@@ -23,7 +23,7 @@
 <meta name="author" content="MSc. Alvaro Limber Chirino Gutierrez" />
 
 
-<meta name="date" content="2022-08-23" />
+<meta name="date" content="2022-08-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -177,8 +177,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="minería-de-datos.html"><a href="minería-de-datos.html#requerimientos"><i class="fa fa-check"></i><b>1.4</b> Requerimientos</a></li>
 <li class="chapter" data-level="1.5" data-path="minería-de-datos.html"><a href="minería-de-datos.html#knowledge-discovery-in-databases-kdd"><i class="fa fa-check"></i><b>1.5</b> knowledge discovery in databases (KDD)</a></li>
-<li class="chapter" data-level="1.6" data-path="minería-de-datos.html"><a href="minería-de-datos.html#fuentes-de-datos"><i class="fa fa-check"></i><b>1.6</b> Fuentes de datos</a></li>
+<li class="chapter" data-level="1.6" data-path="minería-de-datos.html"><a href="minería-de-datos.html#recopilación-de-información"><i class="fa fa-check"></i><b>1.6</b> Recopilación de información</a></li>
 <li class="chapter" data-level="1.7" data-path="minería-de-datos.html"><a href="minería-de-datos.html#data-warehouse"><i class="fa fa-check"></i><b>1.7</b> Data Warehouse</a></li>
+<li class="chapter" data-level="1.8" data-path="minería-de-datos.html"><a href="minería-de-datos.html#data-warehouse-in-r"><i class="fa fa-check"></i><b>1.8</b> Data Warehouse in R</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="pre-procesamiento.html"><a href="pre-procesamiento.html"><i class="fa fa-check"></i><b>2</b> Pre procesamiento</a>
 <ul>
@@ -235,7 +236,7 @@ div.csl-indent {
 <h1 class="title">Minería de datos</h1>
 <h2 class="subtitle"><em>Aplicaciones en R con bases de datos de Bolivia</em></h2>
 <p class="author"><em>MSc. Alvaro Limber Chirino Gutierrez</em></p>
-<p class="date"><em>2022-08-23</em></p>
+<p class="date"><em>2022-08-26</em></p>
 </div>
 <div id="prefacio" class="section level1 unnumbered hasAnchor">
 <h1>Prefacio<a href="index.html#prefacio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -260,32 +261,44 @@ div.csl-indent {
 <h2>Software y acuerdos<a href="index.html#software-y-acuerdos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.2.1 (2022-06-23)
-## Platform: x86_64-apple-darwin17.0 (64-bit)
-## Running under: macOS Monterey 12.4
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 20.04.4 LTS
 ## 
 ## Matrix products: default
-## LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+## BLAS:   /usr/lib/x86_64-linux-gnu/atlas/libblas.so.3.10.3
+## LAPACK: /usr/lib/x86_64-linux-gnu/atlas/liblapack.so.3.10.3
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+##  [1] LC_CTYPE=C.UTF-8      
+##  [2] LC_NUMERIC=C          
+##  [3] LC_TIME=C.UTF-8       
+##  [4] LC_COLLATE=C.UTF-8    
+##  [5] LC_MONETARY=C.UTF-8   
+##  [6] LC_MESSAGES=C.UTF-8   
+##  [7] LC_PAPER=C.UTF-8      
+##  [8] LC_NAME=C             
+##  [9] LC_ADDRESS=C          
+## [10] LC_TELEPHONE=C        
+## [11] LC_MEASUREMENT=C.UTF-8
+## [12] LC_IDENTIFICATION=C   
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices utils    
-## [5] datasets  methods   base     
+## [1] stats     graphics  grDevices
+## [4] utils     datasets  methods  
+## [7] base     
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] bookdown_0.28   digest_0.6.29  
 ##  [3] R6_2.5.1        jsonlite_1.8.0 
-##  [5] magrittr_2.0.3  evaluate_0.15  
-##  [7] highr_0.9       stringi_1.7.6  
-##  [9] rlang_1.0.2     cli_3.3.0      
-## [11] rstudioapi_0.13 jquerylib_0.1.4
-## [13] bslib_0.3.1     rmarkdown_2.14 
-## [15] tools_4.2.1     stringr_1.4.0  
-## [17] xfun_0.31       yaml_2.3.5     
-## [19] fastmap_1.1.0   compiler_4.2.1 
-## [21] htmltools_0.5.2 knitr_1.39     
-## [23] sass_0.4.1</code></pre>
+##  [5] magrittr_2.0.3  evaluate_0.16  
+##  [7] highr_0.9       stringi_1.7.8  
+##  [9] rlang_1.0.4     cachem_1.0.6   
+## [11] jquerylib_0.1.4 bslib_0.4.0    
+## [13] rmarkdown_2.14  tools_4.2.1    
+## [15] stringr_1.4.0   xfun_0.32      
+## [17] yaml_2.3.5      fastmap_1.1.0  
+## [19] compiler_4.2.1  htmltools_0.5.3
+## [21] knitr_1.39      sass_0.4.2</code></pre>
 </div>
 <div id="datos" class="section level2 unnumbered hasAnchor">
 <h2>Datos<a href="index.html#datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>

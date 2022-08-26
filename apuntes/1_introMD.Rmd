@@ -68,7 +68,7 @@ Identifique potenciales conocimientos que se pueden explorar de las respuestas d
   * Visualización de datos
     + Reporte
 
-## Fuentes de datos
+## Recopilación de información
 
   * Censos
     + Población y vivienda: 2012 (x), 2001 (x), 1992 (x), 1976 (x), 1950 https://www.ipums.org/ INE
@@ -80,13 +80,22 @@ Identifique potenciales conocimientos que se pueden explorar de las respuestas d
     + Estudios de observación: Alcance limitado. 
     + Internacionales: LAPOP, Latinobarómetro 
   * Registros administrativos (digital/no digital)
-    + Espacial/geográfico: Tarea: Buscar una fuente de datos que permita trabajar con mapas (.shp) shapefiles
+    + Salud SNIS https://snis.minsalud.gob.bo/
+    + Espacial/geográfico: Puntos, lineas, polígonos  http://geo.gob.bo/portal/#
+      - Dibujo
+      - Dibujo + información
+    + Educación, SIE https://www.minedu.gob.bo/index.php?option=com_content&view=article&id=2315&catid=191&Itemid=470
+    + UDAPE: https://www.udape.gob.bo/index.php?option=com_wrapper&view=wrapper&Itemid=38
+    + Electoral: https://atlaselectoral.oep.org.bo/#/sub_proceso/17/1/1
+    + Datos abiertos: https://datos.gob.bo/dataset
   * Información de internet (registros)
-    + (API) Es posible obtener los comentarios que existen en facebook de forma automática, ejemplo.
+    + Scraping Web (raspado)
+    + API: Protocolos de entrada a páginas web
     
 ## Data Warehouse
 
 ![](images/dataware.png)
+
 ## Data Warehouse in R
 
 ![](images/rdata.png)

@@ -1,0 +1,39 @@
+---
+title: "Clase de exploración"
+output: html_document
+date: "Agosto, 2022"
+---
+
+# Introducción
+
+Hola esta es mi introducción
+
+## Objetivos
+
+### Objetivos específicos
+
+  + Usar R
+    * Usar librerías
+  + Usar MD
+
+## Pregunta de investigación
+
+Se quiere estimar los coeficientes del modelo:
+
+$$y_i=\beta_0+ \beta_1 x_i+\epsilon_i$$
+$$\int_0^\infty f(x) dx$$
+
+# Chunks
+
+```{r,echo=FALSE}
+x<-1:100
+y<-x^2
+```
+
+## Comando plot
+
+```{r}
+plot(x,y)
+```
+
+

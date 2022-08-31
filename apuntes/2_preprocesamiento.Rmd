@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # Pre procesamiento
 
   - Recopilación
@@ -25,8 +30,36 @@
     * Valores perdidos
     
 ## Recopilación
+
+  + Depende de la fuente de información de interés
+
 ## Importación
+
+Traer una base de datos externa y cargarla en el sistema de interés. En nuestro caso en R.
+
+Hay varias librerías útiles para la importación
+
+```{r}
+rm(list=ls())
+#install.packages("haven")
+library(haven)# stata, spss, matlab, 
+library(readxl)# excel 
+#importar la base de datos de las elecciones
+getwd()
+setwd("/cloud/project/apuntes/data")
+#dir()
+bd20<-read.csv("en2020.csv",sep="|")
+save(bd20,file="bd20.RData")
+View(bd20)
+```
+
 ## Exploración
+
+Ejemplo, en la base de datos de las elecciones 2020
+
+  + Unidad de investigación (fila): Encontrar un ID, key.
+  + Variables:
+
 ### Diccionario de variables
 ### Niveles de agregación
 ### Descripción univariada 

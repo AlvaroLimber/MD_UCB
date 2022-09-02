@@ -57,12 +57,44 @@ View(bd20)
 
 Ejemplo, en la base de datos de las elecciones 2020
 
-  + Unidad de investigación (fila): Encontrar un ID, key.
-  + Variables:
+  + Unidad de investigación (fila): Encontrar un ID, key.: Mesas electorales
+  + Variables: Geográficas, identificación del recinto y la mesa, finalmente variables vinculadas a los votos por partido político.
+
+```{r}
+unique(bd20$Nombre.DEPARTAMENTO)
+length(unique(bd20$Codigo.MESA))
+names(bd20)
+```
 
 ### Diccionario de variables
+
+Es un listado de las variables y sus características de formato y alguna información adicional. Lo mas importante es saber que variables son cualitativas y cuales cuantitativas.
+
+```{r}
+str(bd20)#estrucutra 
+str(bd20$VALIDOS)
+```
+
 ### Niveles de agregación
+
+La base de datos puede tener una unidad de investigación **elemental**, pero, puede tener también información de unidades de interés mas grandes, es decir; que agregen a los unidades elementales.
+
+> Problema: Construir una base de datos a nivel de los recintos, con la información de los votos para el MAS, CC, VALIDOS.
+
+```{r}
+library(dplyr)# Gramática de datos SQL
+# %>% operador pipe ctr+alt+m
+bdre20<-bd20 %>% group_by(Codigo.RECINTO,Nombre.RECINTO) %>% summarise(sum(CC),sum(MAS.IPSP),sum(VALIDOS))
+View(bdre20)
+```
+
 ### Descripción univariada 
+
+El objetivo es conocer estadísticas básicas de cada variable.
+
+  + Cualitativas: Conteo, %
+  + Cuantitativas: tendencia central, variabilidad, medidas de forma, densidad. 
+
 ### Identificando relaciones
 ### Aproximación Visual (Visualización)
 ## Filtrado y selección

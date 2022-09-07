@@ -96,7 +96,27 @@ El objetivo es conocer estadísticas básicas de cada variable.
   + Cuantitativas: tendencia central, variabilidad, medidas de forma, densidad. 
 
 ### Identificando relaciones
+
+El objetivo es tener una medida estadística que nos indique algo sobre la relación existente entre 2 o más variables.
+
+  - Cuali vs cuali
+
+```{r}
+library(haven)
+# Área pobreza
+table(eh21p$area,eh21p$p0)
+chisq.test(table(eh21p$area,eh21p$p0))
+```
+
+Test de independencia $\chi^2$
+
+  - H0: Independencia
+
+Cuanti vs cuanti: Lo más útil y práctico es hacer una **correlación**, sin embargo, lo que se estudia es una relación lineal, además son relaciones *casuales*
+
 ### Aproximación Visual (Visualización)
+
+
 ## Filtrado y selección
 ### Filtrado de observaciones
 ### Selección de variables

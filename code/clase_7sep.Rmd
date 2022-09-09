@@ -23,18 +23,60 @@ Cuanti vs cuanti: Lo más útil y práctico es hacer una **correlación**, sin e
 
 ```{r}
 rm(list=ls())
-library(GGally)
-library(Hmisc)
-library("TeachingDemos")
-load(url(""))
-ggpairs()
-faces()
-describe()
+library(GGally)#gráficos para la exploración
+library(Hmisc)# describir 
+library(TeachingDemos)# datos multivariados
+library(haven)
+library(dplyr)
+load(url("https://github.com/AlvaroLimber/MD_UCB/raw/main/eh21.RData"))
+cor(eh21p$aestudio,eh21p$s01a_03,use="pairwise.complete.obs")
+cor(eh21p[,c("aestudio","ylab","s01a_03")],use="pairwise.complete.obs")
+cor(eh21p[,c("aestudio","ylab","s01a_03")],use="complete.obs")
+
+describe(eh21p$s01a_03)
+describe(eh21p$ylab)
+describe(eh21p[,c("aestudio","ylab","s01a_03")])
+describe(eh21p$p0)
+#visual
+eh21p$s01a_02<-as.factor(eh21p$s01a_02)
+ggpairs(eh21p[,c("aestudio","ylab","s01a_03","s01a_02")])
+# Caras de Chernof: Anomalias multivariantes en pocos
+#las variables deben ser cuantiativas
+aux<-na.omit(eh21p[ ,c("aestudio","ylab","s01a_03")])
+faces(aux[1:20, ])
+
 ```
 
 ## Filtrado y selección
+
+Se refiere a seleccionar ya sean los casos de interés (filas) o las variables a utilizar en el modelado (columnas)
+
 ### Filtrado de observaciones
+
+> Problema: Seleccionar a las mujeres con ingresos laborales
+
+```{r}
+aux<-unique(eh21p$s01a_02)
+p1<-eh21p %>% filter(s01a_02==2 & is.na(ylab)==F)
+p1<-eh21p %>% filter(s01a_02==2 & !is.na(ylab))
+```
+
+> Problema: Seleccionar a los/las jefes/jefas de hogar con ingresos laborales del departamento de Santa Cruz
+
+```{r}
+p2<-eh21p %>% filter(is.na(ylab)==F & s01a_05==1 & depto==7)
+```
+
 ### Selección de variables
+
+```{r}
+eh21p %>% select(folio,depto,p0)
+eh21p %>% filter(is.na(ylab)==F & s01a_05==1 & depto==7) %>% select(folio,depto,p0)
+
+eh21p %>% select(-folio)
+eh21p %>% select(-c(folio,p0,ylab))
+```
+
 ### Pivot, Reshape
 
 > Problema: Cuál es la cantidad promedio de tenencia del equipamiento (17 items) en los hogares?. Mostrar un histograma.

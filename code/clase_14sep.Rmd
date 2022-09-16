@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 ## Transformación
 
 Hasta este momento no se realizaron alteraciones o cambios a la base de datos original (bruta, primitiva). El objetivo de la transformación es introducir cambios en la base de datos, estos cambios pueden ser:
@@ -19,10 +24,38 @@ Existen varias recomendaciones sobre el nombre de las variables, el principio b�
   - Usar solo mayúsculas o minúsculas
   - Evitar nombres sólo con números o que inicie en un número
   - Usar nombres intuitivos relacionas a la variable
+  - Evitar sobre escribir otras variables
   
 ### Adecuación de formatos
 
 Es importante asegurarse que las distintas variables de estudio se encuentren en el formato adecuado. En el R se debe tener cuidado con las variables cualitativas, estas deben ser declaradas como variables de tipo factor.
+
+```{r}
+x<-c(1,2,3,"hola",4)
+mean(x)
+typeof(x)
+xx<-as.numeric(x)
+mean(xx,na.rm = T)
+#as.character()# convertir a texto
+sexo<-c(1,2,2,1,1,1,1,1,2,2)
+sexo
+summary(sexo)
+sexo1<-as.factor(sexo)
+summary(sexo1)
+#etiquetas
+sexo2<-factor(sexo,c(1,2),c("H","M"))
+sexo2
+summary(sexo2)
+plot(sexo2)
+#escala
+aa<-c(1,1,1,1,2,2,2,1,2,1,3,3,3)
+aa
+factor(aa,c(1,2),c("Alto","Medio"))
+factor(aa,c(1,2,3),c("Alto","Medio","Bajo"))
+factor(aa,c(1,2,3,9),c("Alto","Medio","Bajo","No responde"))
+```
+
+Para trabajar con variables relacionadas a fechas y hora, se recomienda explorar la librería **lubridate**
 
 ### Limpieza de texto
 
@@ -30,6 +63,45 @@ Es importante asegurarse que las distintas variables de estudio se encuentren en
   + Espacios
   + Extraer partes
   + Reemplazar
+  + Eliminar números, símbolos, stopwords
+  
+```{r}
+library(dplyr)
+x<-c("Hola a todos y a todas",
+     "Hóla a Todos Y a todaS",
+     "Hola     a Todos Y a todaS    ",
+     "    Hola   a todos, y a todas   ",
+     "HolX a tXdo5 y a todas")
+tolower(x)
+toupper(x)
+x %>% tolower()
+
+gsub("o","x",c("bolivia","cochabamba"))
+## y
+y<-tolower(x)
+y<-gsub("hóla","hola",y)
+y<-gsub("holx","hola",y)
+y<-gsub("txdo5","todos",y)
+y<-gsub(",","",y)
+library(stringr)
+y
+str_trim(y)
+y<-str_squish(y)
+y
+nchar(y)
+substr(y,7,22)
+str_split(y," ")
+
+str_split("cochabamba","a")
+str_split(y," ")
+#install.packages("tm")
+library(tm)# text minning
+
+w<-c("hola a todos y todas, hoy es 14 de septiembre de 2022!!!!")
+w %>% removeNumbers() %>% removePunctuation() %>% removeWords(stopwords("es")) %>% str_squish()
+
+stopwords("es")
+```
 
 ### Creación de variables
 
@@ -41,6 +113,42 @@ Se refiere a crear nuevas variables, estas pueden ser definidas con base a otras
   + Recodificar
   + Agregar información
   + Indicadores
+  
+```{r}
+load(url("https://github.com/AlvaroLimber/MD_UCB/raw/main/eh21.RData"))
+# Constantes
+eh21p %>% mutate(x=1) %>% select(folio,x)
+eh21p %>% mutate(x=n()) %>% select(folio,x)
+eh21p %>% group_by(folio) %>% mutate(x=n()) %>% select(folio,x)
+# Binarias}
+eh21p %>% mutate(mujer=(s01a_02==2)) %>% select(s01a_02,mujer)
+
+eh21p %>% mutate(g60=(s01a_03>=60)) %>% select(s01a_03,g60)
+
+eh21p %>% mutate(g60=(s01a_03>=60)) %>% select(s01a_03,g60) %>% summarise(g60=mean(g60)*100)
+
+eh21p %>% mutate(g60=(s01a_03>=60)) %>% select(area,s01a_03,g60) %>% group_by(area)%>%  summarise(g60=mean(g60)*100)
+#crear una variable binaria que identifique a las personas menores de 5 y mayores de 60, simultaneamente.
+eh21p<-eh21p %>% rename(edad=s01a_03) %>% 
+  mutate(g560=(edad<5 | edad>60))
+eh21p %>% select(edad,g560) %>% tail()
+
+eh21p %>% group_by(depto) %>% summarise(g560=mean(g560)*100)
+
+bd<-eh21p %>% filter(g560==T)
+
+# Funciones matemáticas
+hist(eh21p$ylab)
+eh21p<-eh21p %>% mutate(lylab=log(ylab))
+hist(eh21p$lylab)
+#estandarización
+eh21p<-eh21p %>% mutate(sylab=scale(ylab))
+hist(eh21p$sylab)
+# Recodificar
+# Agregar información
+# Indicadores
+```
+  
   
 ### Valores atípicos
 

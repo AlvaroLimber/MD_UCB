@@ -1,0 +1,43 @@
+---
+title: "Tema: Reducción de dimensionalidad"
+subtitle: "Ejercicios de repaso"
+author: "MSc. Alvaro Chirino"
+date: "octubre, 2022"
+output: 
+  pdf_document: 
+    number_sections: false
+---
+
+# Análisis de Componentes principales
+
+## Ejercicio 1 
+
+Usando la sección de discriminación de las EH defina un indicador basado en el primer componente principal.
+
+  + ¿Qué porcentaje de varianza se explica?
+  + Existe alguna relación con el nivel de pobreza
+  + Existe alguna relación con el sexo de la persona
+
+## Ejercicio 2 
+
+Usando la base de datos de https://www.kaggle.com/datasets/mohansacharya/graduate-admissions selecciones todas las variables excepto el *serial* y el *chance of admit*, realice el ACP y describa:
+
+  + Componentes a retener con el criterio de los eigen valores
+  + ¿Qué explican los componentes retenidos?
+
+# Análisis de correspondencia simple
+
+## 
+
+## 
+
+##
+
+
+# Análisis de correspondencia múltiple
+
+## 
+
+## 
+
+##

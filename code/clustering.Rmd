@@ -1,0 +1,192 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Clustering, Agrupamiento
+
+El clustering es un método cuyo objetivo es el de *crear grupos* en base a las relaciones *multivariantes* que existen en los datos, este método es un método previo a las técnicas de "clasificación" que existen. La base del clustering es la definición de la **similaridad entre las filas**. Similaridad es definida como una función de distancia entre un par de filas.
+
+Es importante distinguir la existencia de grupos naturales dentro de los datos, normalmente estos grupos son características naturales de las observaciones de interés. 
+
+Ejemplo de aplicación
+
+  + En las escuelas o universidades, con base a las notas se puede tener grupos. Esto puede servir para estrategias de apoyo. 
+  + En la banca se pueden crear grupos basados en las características de los clientes de créditos/ahorro. Esto puede servir para mejorar servicios o incrementar personal
+  + En los hospitales sobre la base de datos de pacientes, para tener perfil de los pacientes...
+
+## Medidas de Disimilaridad
+
+Dado el objetivo del clustering, el aspecto mas importante dentro de estos métodos es utilizar de forma correcta la medida de (di)similaridad para los casos dentro de la base de datos.
+
+La definición de las medidas de distancia es crucial para aplicar estos modelos. Funciones de distancia incorrecta pueden generar sesgos en los resultados y ser un problema para etapas posteriores de la mineria de datos. Debemos distinguir las funciones de distancia según la **naturaleza de las variables**.
+
+Sean las filas $x$ e $y$ dentro de una base de datos, estos vectores tienen una dimensión $p$, es decir, se observan $p$ variables para las 2 observaciones.
+
+### Distancia Euclideana: Variables numéricas
+
+$$d(x,y)=\sqrt{\sum_{i=1}^p{(x_i-y_i)^2}}$$
+
+Donde los $x_i$ y $_y_i$ son los valores para la variable $i$ de las observaciones $x$ e $y$.
+
+### Distancia Manhattan: $p$ grande
+
+$$d(x,y)=\sum_{i=1}^p{|x_i-y_i|}$$
+
+### Distancia Minkowski 
+
+$$d(x,y)=\left(\sum_{i=1}^p{|x_i-y_i|^d}\right)^{1/d}$$
+
+Se recomienda que d sea cercano a 0 cuando p sea grande
+
+Ejemplo en R
+
+
+```{r}
+edad, número de materias, tiempo en minutos a la U, gasto en pasajes a la U, número de hermanos/as 
+bd<-rbind(
+c(22,7,45,10,2),
+c(20,6,10,10,2),
+c(20,7,10,4,0),
+c(22,4,15,10,2),
+c(20,7,15,5,1),
+c(21,6,10,10,1),
+c(22,7,10,20,3),
+c(20,6,25,4,1),
+c(23,3,30,10,1),
+c(24,6,40,5,1)
+)
+bd<-as.data.frame(bd)
+sqrt(sum((bd[1,]-bd[2,])^2))#euclideana
+sum(abs(bd[1,]-bd[2,]))#manhatam
+de<-dist(bd)
+dist(bd, method="manhattan")
+dist(bd, method="minkowski", p=3)# p=d para la formula
+```
+
+### Variables cualitativas
+
+Para las variables cualitativas se debe considerar los casos cuando estas son nominales y ordinales, distinguir también los casos de variables binarias.
+
+```{r}
+library(vegan)
+vegdist()
+```
+
+### Datos mixtos 
+
+Una de los mayores desafíos es cuando las variables son mixtas, es decir cuantitativas y cualitativas.
+
+La mejor distancias para estos casos es la distancia de *Gower*.
+
+## Métodos de clustering
+
+* Partición (k-center)
+* Jerárquicos (dendograma)
+* Basados en densidad
+* Basados en cuadrículas (grid)
+
+## K-center Clustering (no jerárquicos)
+
+Algoritmo
+
+0. Definición del valor de $k$.
+1. Partición de las observaciones en $k$ grupos, obtener el vector de centros de cada grupo (centroides). Se puede trabajar con la media, la mediana o el medoide.
+2. Para cada observación calcular las distancia euclidiana (u otra) a los centroides y reasignar la observación en base a la menor distancia, re calcular los centroides en base a la re asignación de cada observación
+3. Repetir el paso 2 hasta que que ya no existan más re asignaciones
+
+### Validación cluster
+
+* La estructura de los cluster es aleatoria (¿funciona?)
+* ¿Cómo definimos el valor de $K$? 
+
+> Silhouette coefficient: 
+
+1. Se obtiene para la observación $i$ el promedio de distancia a todos los objetos en el mismo cluster ($a_i$)
+2. Se obtiene para la observación $i$ el promedio de distancia a todos los objetos de los otros clusters ($b_i$)
+3. Se define a $s_i$ como el coeficiente, con un recorrido entre $[-1,1]$, para cada observación $i$
+
+$$s_i=\frac{b_i-a_i}{max(a_i,b_i)}$$
+
+Idealmente se espera que $a_i < b_i$ y los $a_i$ cercanos a $0$. 
+
+```{r}
+library(cluster)
+silhouette()
+```
+
+> Medoide: es el punto de datos que es "menos diferente" de todos los otros puntos de datos. A diferencia del centroide, el medoide tiene que ser uno de los puntos originales.
+
+```{r}
+pam()
+```
+
+* ¿Cuál es el número óptimo de $k$? 
+
+```{r}
+library(fpc)# Flexible Procedures for Clustering
+pamk(, krange=2:10, criterion="asw", usepam=TRUE)
+```
+
+### Distancias para variables nominales (todas nominales)
+
+En este caso la mejor estrategia es llevar las variables con sus categorias a variables binarias. Existen múltiples medidas de distancia para variables binarias, muchas de estas medidas son aproximaciones a las medidas mas conocidas. Entre ellas:
+
+Sean las filas $i$, $j$ que contienen los valores binarios de las variables de estudio. Sea $A$ el total de $1$ que existe en $i$, $B$ el total de $1$ que existe en $j$ y sea $J$ el total de casos en los que los $1$ ocurren simultaneamente en $i$ y $j$.
+
+  * Euclideana
+  
+  $$d_{ij}=\sqrt{A+B-2J}$$
+  
+  * Manhattan
+  
+  $$d_{ij}=A+B-2J$$
+  
+  * Bray
+  
+  $$d_{ij}=\frac{A+B-2J}{A+B}$$
+
+  * Binomial
+  
+  $$d_{ij}=log(2)(A+B-2J)$$
+
+### Distancias para variables mixtas (cuantitativas, nominales, ordinales)
+
+```{r,eval=F}
+library(cluster)
+data("flower")
+str(flower)
+dd<-daisy(flower,metric = "gower")
+summary(dd)
+```
+
+## Cluster Jerárquico
+
+El objetivo es obtener una jerarquía de posibles soluciones que van desde un solo grupo a $n$ grupos, donde $n$ es el número de observaciones en el conjunto de datos.
+
+### Algoritmo (Johnson)
+
+1. Se inicia con $n$ grupos y se genera una matriz de $nxn$ de distancias, $D=\{d_{ik}\}$
+2. Buscar en la matriz de distancia los pares de cluster más cercanos entre ellos, "los cluster mas similares", si definimos los clusters $V$ y $U$, estamos interesados en encontrar $d_{UV}$
+3. Unir los cluster $U$ y $V$, re etiquetar el nuevo cluster como $UV$. Actualizar la matriz de distancias a) remover las filas y columnas correspondientes a $U$ y $V$ b) incluimos las nuevas filas y columnas para el nuevo cluster $UV$.
+4. Repetimos el paso 2 y 3 un total de $n-1$ veces.
+
+El momento de definir el cluster más cercano, se puede emplear los siguientes enlaces:
+
+* Single linkage (Enlace simple): Se elige al cluster más cercano, con la regla de que las distincia individual entre las observaciones dentro de los clusters es la más corta 
+* Complete linkage (Enlace completo): Se elige el cluster mas cercano, con la regla que las distancias individuales entre las observaciones dentro de los cluster es la más larga
+* Average linkage (Enlace promedio): Se elige el cluster mas cercano, considerando el promedio de las distancias entre los cluster.
+
+> Nota: Se debe elegir la matriz de distancias acorde a la naturaleza de los datos, se recomienda:
+
+  * Todas Numéricas: Euclideana o Manhatan
+  * Todas nominales: Transformación a binarias y usar la distancia binomial
+  * Mixtas: Distancia de Gower
+
+
+Nota: El dendograma es muy útil para ver las relaciones que existen basadas en las distancias y la creación de las jerarquias, a partir de estos se puede definir un $k$ (de forma visual)
+
+Nota: El dendograma pierde su utilidad cuando la cantidad de observaciones es muy alta, 
+
+Algunas alternativas para la visualización son:
